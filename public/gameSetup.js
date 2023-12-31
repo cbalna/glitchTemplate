@@ -1,28 +1,5 @@
 
 
-console.log(car)
-
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
-
-// Game properties
-const boxSize = 50;
-let boxX = (canvas.width - boxSize) / 2;
-let boxY = (canvas.height - boxSize) / 2;
-const moveSpeed = 5;
-
-// Keyboard input handling
-const keys = {};
-
-window.addEventListener('keydown', (event) => {
-  keys[event.key] = true;
-});
-
-window.addEventListener('keyup', (event) => {
-  keys[event.key] = false;
-});
-
-
 let lastFrameTime = 0.0;
 const targetLogicRate = 16.6666; // Desired logic update rate in milliseconds 16.6666 = 60fps
 let totalLag = 0.0;
@@ -40,16 +17,10 @@ function drawLoop(currentTime) {
   // Save the current time for the next frame
   lastFrameTime = currentTime;
 
-  // Schedule the next frame
+  // Draw stuff
+  drawStuff();
 
-    // Clear the canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-     
-
-    // Draw the box
-    ctx.fillStyle = '#00F';
-    ctx.fillRect(boxX, boxY, boxSize, boxSize);
+  
  
   // Request the next frame
   requestAnimationFrame(drawLoop);
@@ -72,22 +43,15 @@ function updateGameLogic(elapsed) {
   totalLag = totalElapsed;
 }
 
-
-function gameLoop(){
-  if (keys['ArrowUp'] && boxY > 0) {
-      boxY -= moveSpeed;
-    }
-    if (keys['ArrowDown'] && boxY < canvas.height - boxSize) {
-      boxY += moveSpeed;
-    }
-    if (keys['ArrowLeft'] && boxX > 0) {
-      boxX -= moveSpeed;
-    }
-    if (keys['ArrowRight'] && boxX < canvas.width - boxSize) {
-      boxX += moveSpeed;
-    }
-}
-
-
 // Start the game loop
 requestAnimationFrame(drawLoop);
+
+
+
+
+// Keyboard input handling
+
+
+
+
+
